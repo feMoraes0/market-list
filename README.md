@@ -13,6 +13,13 @@ A simple application built with Flutter, but using some important topics as stat
  - [Flutter com MobX (Portuguese text)](https://medium.com/flutter-comunidade-br/flutter-com-mobx-c0f4762fbd1a)
  - [Persist data with SQLite](https://flutter.dev/docs/cookbook/persistence/sqlite)
 
+## Future fixes and updates.
+  - [ ] Clear the input text after item saved.
+  - [ ] Remove save icon and modify to save with keyboard 'send button'.
+  - [ ] User message after delete a product
+     - [ ] maybe with 'undo' option.
+  - [ ] Reorder list putting bought itens at the end.
+
 ## How to use
 To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Flutter](https://flutter.dev/docs/get-started/install) installed on your computer. From your command line:
 
