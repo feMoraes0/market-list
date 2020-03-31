@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:marketlist/controllers/market_controller.dart';
 
 class ListItem extends StatelessWidget {
   final int index;
   final String title;
   final bool checked;
+  final MarketController marketController;
 
-  const ListItem({
+  ListItem({
     Key key,
     this.index,
     this.title,
     this.checked,
+    this.marketController,
   }) : super(key: key);
 
   @override
@@ -24,12 +27,17 @@ class ListItem extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        leading: Icon(
-          (this.checked)
-              ? Icons.check_circle_outline
-              : Icons.radio_button_unchecked,
-          size: 28.0,
-          color: (this.checked) ? Colors.greenAccent : Colors.black87,
+        leading: GestureDetector(
+          onTap: () {
+            this.marketController.markProduct(index);
+          },
+          child: Icon(
+            (this.checked)
+                ? Icons.check_circle_outline
+                : Icons.radio_button_unchecked,
+            size: 28.0,
+            color: (this.checked) ? Colors.greenAccent : Colors.black87,
+          ),
         ),
         title: Text(
           title,

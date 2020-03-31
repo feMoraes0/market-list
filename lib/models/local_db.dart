@@ -1,4 +1,4 @@
-import 'package:marketlist/models/item.dart';
+import 'package:marketlist/models/product.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -17,38 +17,38 @@ class LocalDb {
     );
   }
 
-  Future<void> insert(Item item) async {
+  Future<void> insert(Product product) async {
     Database database = await this._init();
     await database.insert(
       'itens',
-      item.toMap(),
+      product.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print(item.toMap());
     return;
   }
 
-  Future<List<Item>> selectAll() async {
+  Future<List<Product>> selectAll() async {
     Database database = await this._init();
     final List<Map<String, dynamic>> itensDb = await database.query(
       'itens',
       orderBy: 'ID DESC',
     );
     return List.generate(itensDb.length, (index) {
-      return Item(
+      return Product(
+        id: itensDb[index]['ID'],
         name: itensDb[index]['NAME'],
         status: (itensDb[index]['STATUS'] == 1) ? true : false,
       );
     });
   }
 
-  Future<void> update(Item item, int id) async {
+  Future<void> update(Product product) async {
     Database database = await this._init();
     await database.update(
       'itens',
-      item.toMap(),
+      product.toMap(),
       where: 'id = ?',
-      whereArgs: [id],
+      whereArgs: [product.getId()],
     );
   }
 
