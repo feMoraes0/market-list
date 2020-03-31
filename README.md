@@ -1,5 +1,7 @@
 <h1 align="center">Market List</h1>
 
+A simple application built with Flutter, but using some important topics as state management with [Mobx](https://mobx.netlify.com/) and local data persistence with [SQLite](https://pub.dev/packages/sqflite). Feel free to clone this project, learn with it or fix their problems and send me back as a pull request.
+
 <p align="center">
   <img width="220" src="print_readme/print_001.png"/>
   <img width="220" src="print_readme/print_002.png"/>
@@ -8,9 +10,8 @@
 </p>
 
 ## Useful Links
- - [Flutter com MobX (pt-br)](https://medium.com/flutter-comunidade-br/flutter-com-mobx-c0f4762fbd1a)
+ - [Flutter com MobX (Portuguese text)](https://medium.com/flutter-comunidade-br/flutter-com-mobx-c0f4762fbd1a)
  - [Persist data with SQLite](https://flutter.dev/docs/cookbook/persistence/sqlite)
- - 
 
 ## How to use
 To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Flutter](https://flutter.dev/docs/get-started/install) installed on your computer. From your command line:
