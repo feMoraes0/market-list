@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:marketlist/components/header_custom.dart';
 import 'package:marketlist/components/list_item.dart';
+import 'package:marketlist/models/item.dart';
+import 'package:marketlist/models/local_db.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,7 +10,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List elements = [1, 2, 3, 4];
+  List<Item> itens;
+  LocalDb localDB = new LocalDb();
+  TextEditingController _textController;
+
+  @override
+  void initState() {
+    this.itens = [];
+    this._textController = new TextEditingController();
+    this.getItens();
+    super.initState();
+  }
+
+  Future<void> getItens() async {
+    List<Item> itens = await localDB.selectAll();
+    setState(() {
+      this.itens = itens;
+    });
+  }
+
+  Future<void> saveItem(String name) async {
+    Item item = Item(name: name, status: false);
+    await localDB.insert(item);
+    await this.getItens();
+  }
+
+  @override
+  void dispose() {
+    this._textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +99,7 @@ class _HomeState extends State<Home> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: this.elements.length + 1,
+                  itemCount: this.itens.length + 1,
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       return Container(
@@ -95,26 +126,36 @@ class _HomeState extends State<Home> {
                                   fontSize: 21.0,
                                   fontWeight: FontWeight.w300,
                                 ),
+                                controller: this._textController,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 20.0,
-                              ),
-                              child: Icon(
-                                Icons.save,
-                                size: 28.0,
-                                color: Colors.black87,
+                            GestureDetector(
+                              onTap: () {
+                                if (this._textController.text != '') {
+                                  this.saveItem(this._textController.text);
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20.0,
+                                ),
+                                child: Icon(
+                                  Icons.save,
+                                  size: 28.0,
+                                  color: Colors.black87,
+                                ),
                               ),
                             ),
                           ],
                         ),
                       );
                     }
+                    Item item = this.itens[index - 1];
+//                    print(item.getName());
                     return ListItem(
                       index: index,
-                      title: 'Product',
-                      checked: (index / 2 == 1) ? false : true,
+                      title: item.getName() ?? 'PRODUCT',
+                      checked: item.getStatus() ?? false,
                     );
                   },
                 ),
