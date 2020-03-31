@@ -47,10 +47,15 @@ class ListItem extends StatelessWidget {
             fontWeight: FontWeight.w300,
           ),
         ),
-        trailing: Icon(
-          Icons.delete_outline,
-          size: 28.0,
-          color: (this.checked) ? Colors.black54 : Colors.black87,
+        trailing: GestureDetector(
+          onTap: () {
+            this.marketController.deleteProduct(index);
+          },
+          child: Icon(
+            Icons.delete_outline,
+            size: 28.0,
+            color: (this.checked) ? Colors.black54 : Colors.black87,
+          ),
         ),
       ),
     );

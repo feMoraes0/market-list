@@ -47,4 +47,14 @@ abstract class MarketControllerBase with Store {
     await LocalDb().update(product);
     products.insert(id, product);
   }
+
+  @action
+  deleteProduct(int id) async {
+    Product product = products[id];
+
+    await LocalDb().delete(product.getId());
+    products.removeAt(id);
+
+    if (product.getStatus()) checkedCount--;
+  }
 }

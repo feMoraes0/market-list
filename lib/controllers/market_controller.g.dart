@@ -64,6 +64,13 @@ mixin _$MarketController on MarketControllerBase, Store {
     return _$markProductAsyncAction.run(() => super.markProduct(id));
   }
 
+  final _$deleteProductAsyncAction = AsyncAction('deleteProduct');
+
+  @override
+  Future deleteProduct(int id) {
+    return _$deleteProductAsyncAction.run(() => super.deleteProduct(id));
+  }
+
   @override
   String toString() {
     final string =
