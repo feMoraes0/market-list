@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketlist/components/header_custom.dart';
 import 'package:marketlist/components/list_item.dart';
 
 class Home extends StatefulWidget {
@@ -18,30 +19,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: <Widget>[
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 40.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Tuesday',
-                      style: TextStyle(
-                        fontSize: 33.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      ', 31 Mar',
-                      style: TextStyle(
-                        fontSize: 33.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              HeaderCustom(),
               Container(
                 margin: const EdgeInsets.only(bottom: 40.0),
                 child: Row(
