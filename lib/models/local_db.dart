@@ -41,4 +41,23 @@ class LocalDb {
       );
     });
   }
+
+  Future<void> update(Item item, int id) async {
+    Database database = await this._init();
+    await database.update(
+      'itens',
+      item.toMap(),
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<void> delete(int id) async {
+    Database database = await this._init();
+    await database.delete(
+      'itens',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
